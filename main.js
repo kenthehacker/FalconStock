@@ -20,36 +20,36 @@ d.setUTCSeconds(utcSeconds);
 */
 
 ws.onmessage = function (event) {
-    var jsonShit = JSON.parse(event.data)
-    var utcMiliSec = jsonShit.E
+    var response = JSON.parse(event.data)
+    var utcMiliSec = response.E
     var d = new Date(0)
     d.setUTCMilliseconds(utcMiliSec)
     //console.log(d)
-    //var temp = {time: utcMiliSec, value: parseInt(jsonShit.p,10)}
+    //var temp = {time: utcMiliSec, value: parseInt(response.p,10)}
     if(isReady){
         isReady = false
-        base = jsonShit.p
+        base = response.p
     }
-    console.log("p = "+jsonShit.p+" base = "+base)
+    console.log("p = "+response.p+" base = "+base)
     
     //if we go up a certain percent we might want to be able to sell that position
-    if((jsonShit.p-base)/base >percentThreshold){
+    if((response.p-base)/base >percentThreshold){
         console.log("triggered bull")
-        base = jsonShit.p
+        base = response.p
         
         //return "Last Buy: "+base 
     }
     //if we go down a certain percent we want to buy that thing
-    else if ((jsonShit.p-base)/base<downThreshold){
+    else if ((response.p-base)/base<downThreshold){
         console.log("triggered bear")
-        base = jsonShit.p
+        base = response.p
         document.getElementById("lastPrice").innerHTML = "Last Buy: "+base
         audio.play()
     }
     else{
         //do nothing
     }
-    var temp = {time: utcMiliSec, value: jsonShit.p}
+    var temp = {time: utcMiliSec, value: response.p}
     bigData.push(temp)
     lineSeries.setData(bigData)    
 }
