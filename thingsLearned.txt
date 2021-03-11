@@ -1,0 +1,29 @@
+MISC just for Ken:
+endpoint stuff:
+    the base endpoint is: wss://stream.binance.us:9443
+    streaming trading data: wscat -c wss://stream.binance.us:9443/ws/btcusdt@trade
+    streaming kline/candlestick data: wss://stream.binance.us:9443/ws/btcusdt@kline_5m
+
+Command Line Stuff:
+    Saving terminal output to a .txt file
+        command | tee /path/to/file
+
+
+HTML & JS stuff
+    We can use <script> tag to insert a JS line inside
+    our websocket object will be instantaniated inside there
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
